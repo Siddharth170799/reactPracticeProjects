@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Input from './Input';
+import Input2 from './Input2';
+import Context from './Context';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [input, setInput] = useState('');
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{ input, setInput }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Input />} />
+          <Route path="/input2" element={<Input2 />} />
+        </Routes>
+      </BrowserRouter>
+    </Context.Provider>
   );
 }
 
