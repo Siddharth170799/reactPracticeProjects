@@ -3,23 +3,25 @@ import './App.css';
 import { useState } from 'react';
 import Input from './Input';
 import Input2 from './Input2';
-import Context from './Context';
+import Context2 from './Context2';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Quiz from './Quiz';
+import Timer from './Timer';
 
 function App() {
-  const [input, setInput] = useState('');
-
-
+  // const [input, setInput] = useState('');
 
   return (
-    <Context.Provider value={{ input, setInput }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Input />} />
-          <Route path="/input2" element={<Input2 />} />
-        </Routes>
-      </BrowserRouter>
-    </Context.Provider>
+    // <Context2.Provider value={{ input, setInput }}>
+    //   <BrowserRouter>
+    //     <Routes>
+    //       <Route path="/" element={<Input />} />
+    //       <Route path="/input2" element={<Input2/>} />
+    //     </Routes>
+    //   </BrowserRouter>
+    // </Context2.Provider>
+    <Quiz/>
+    // <Timer/>
   );
 }
 

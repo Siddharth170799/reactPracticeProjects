@@ -1,9 +1,11 @@
 
 import React, { useContext } from 'react';
-import Context from './Context';
+import Context2 from './Context2';
+import { useNavigate } from 'react-router-dom';
 
 function Input() {
-  const { input, setInput } = useContext(Context);
+  const { input, setInput } = useContext(Context2);
+  const navigate =useNavigate();
 
   const handleInputChange = (event) => {
     setInput(event.target.value);
@@ -12,6 +14,7 @@ function Input() {
   return (
     <div>
       <input type="text" value={input} onChange={handleInputChange} />
+      <button onClick={()=>navigate("/input2")}>CLick to Navigate</button>
     </div>
   );
 }
