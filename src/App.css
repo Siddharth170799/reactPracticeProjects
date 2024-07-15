@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  background-image: url("https://t3.ftcdn.net/jpg/04/78/35/22/360_F_478352239_ckoEVDJZX54tvAzxpL3F7UOr2qoXx0wV.jpg");
+}
