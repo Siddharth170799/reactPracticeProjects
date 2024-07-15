@@ -7,6 +7,7 @@ import Context2 from './Context2';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Quiz from './Quiz';
 import Timer from './Timer';
+import MainPage from './MainPage';
 
 function App() {
   // const [input, setInput] = useState('');
@@ -20,8 +21,14 @@ function App() {
     //     </Routes>
     //   </BrowserRouter>
     // </Context2.Provider>
-    <Quiz/>
+    // <Quiz/>
     // <Timer/>
+
+    <BrowserRouter>
+    <Routes>
+      <Route path ='/' element={<MainPage/>}/>
+      <Route path ='/Quiz' element={<Quiz/>}/>
+      </Routes></BrowserRouter>
   );
 }
 
