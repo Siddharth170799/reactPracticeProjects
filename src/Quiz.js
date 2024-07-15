@@ -12,79 +12,35 @@ const [count,setCount]=useState(20);
   const [select,setSelect]=useState(true)
   const intervalRef2 = useRef(null)
  
-
+  const [value,setValue]=useState(null)
+const [display2,setDisplay2]=useState(null)
+const [score,setScore] =useState(0)
   function validate(value) {
     if ( data.find((item)=>item.answer == value )) {
-      alert("correct answer");
+    //   alert("correct answer");
       setCurrentKey(currentKey + 1);
       setButton(!button)
-   
-    } else  {
+      setValue(value)
+      setScore(score+1)
 
-        setSelect(!select)
-        setDisplayMessage("game over")
+ } else  {
+   setSelect(!select)
+        setDisplayMessage("Game over !!! Please Try Again")
         clearInterval(intervalRef.current)
         clearInterval(intervalRef2.current)
     }
   }
+function success(){
+    if(value == "Prahlad Joshi"){
+        setCount("")
+        setCount2("")
+        setDisplay2("Successfully Completed")
+
+    }
+  }
+  console.log(value)
 
 // //// for even number questions count2 state variable////
-// useEffect(() => {
-
-// if(button == false){
-
-// setCount(30)
-
-
-// intervalRef2.current =setInterval(()=>{
-// setCount2(count2-1)
-
-// },1000)
-
-// }
-//  else if(button == true){
-//     clearInterval(intervalRef2.current)
-//     intervalRef2.current=null
-//     setCount2(10)
-// }
-
-// if(count2 == 0){
-//     clearInterval(intervalRef2.current)
-//     intervalRef2.current = null
-//     setSelect(!select)
-   
-// }
-
-
-//   }, [button,count2]);
-
-
-
-
-// useEffect(() => {
-//     if (button == false) {
-//       setCount(20);
-//       if (count2 > 0 && !intervalRef2.current) {
-//         intervalRef2.current = setInterval(() => {
-//           setCount2((count2) => count2 - 1);
-//         }, 1000);
-//       }
-//     } else {
-//       clearInterval(intervalRef2.current);
-//       intervalRef2.current = null;
-//       setCount2(20);
-//     }
-
-//     if (count2 === 0) {
-//       clearInterval(intervalRef2.current);
-//       intervalRef2.current = null;
-//       setSelect(!select);
-//     }
-
-//   }, [button, count2]);
-
-
-
 
   useEffect(()=>{
   if(button == false ){
@@ -106,6 +62,8 @@ const [count,setCount]=useState(20);
     intervalRef2.current=null;
     setSelect(!select)
   }
+
+  success()
   },[button,count2])
 
 //////// for odd number questions count state variable/////
@@ -159,7 +117,12 @@ useEffect(()=>{
 
 
   return (
- 
+<>
+<div><h1 style={{textAlign:"center"}}>Welcome To The World of Quiz</h1>
+   
+
+    </div>
+    <h2 style={{marginLeft:"1200px"}} >Score {score}/10</h2>
     <div style={styles.quizContainer}>
     <div style={styles.timerContainer}>
       <h1 style={styles.timer}>
@@ -222,8 +185,10 @@ useEffect(()=>{
     </div>
     <div style={styles.messageContainer}>
       {displayMessage !== null && <p style={styles.displayMessage}>{displayMessage}</p>}
+      {display2}
     </div>
   </div>
+  </>
 );
   
 };

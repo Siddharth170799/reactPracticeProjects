@@ -8,6 +8,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Quiz from './Quiz';
 import Timer from './Timer';
 import MainPage from './MainPage';
+import Home from './Home';
+import Shop from './Shop';
 
 function App() {
   // const [input, setInput] = useState('');
@@ -29,6 +31,13 @@ function App() {
       <Route path ='/' element={<MainPage/>}/>
       <Route path ='/Quiz' element={<Quiz/>}/>
       </Routes></BrowserRouter>
+
+  //  <BrowserRouter>
+  //  <Routes>
+  //   <Route path ="/" element={<Home/>}/>
+  //   <Route path ="/shop" element={<Shop/>}/>
+  //   </Routes></BrowserRouter>
+
   );
 }
 

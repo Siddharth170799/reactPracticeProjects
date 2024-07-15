@@ -94,12 +94,12 @@ const Questions = [
         time: 30,
         key: 10,
       }, {
-        question: "Who is India's Space Minister",
+        question: "Who is India's Parliamentary Affairs Minister",
         option1: "Nitish Kumar",
         option2: "MK Stalin",
-        option3: "Narendra Modi ",
+        option3: "Prahlad Joshi",
         option4: "Ashwini Vaishnaw",
-        answer: "Ashwini Vaishnaw",
+        answer: "Prahlad Joshi",
         time: 30,
         key: 11,
       }
