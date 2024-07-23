@@ -24,9 +24,9 @@ const Questions = [
     },   {
         question: "Who is India's Defence Minister",
         option1: "Amit Shah",
-        option2: "Jay shah",
+        option2: "Nirmala Sitharaman",
         option3: "Rajnath Singh",
-        option4: "Nirmala Sitharaman",
+        option4: "Jay Shah",
         answer: "Rajnath Singh",
         time: 30,
         key: 3,

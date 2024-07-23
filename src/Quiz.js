@@ -1,506 +1,3 @@
-// import React, { useEffect, useState,useRef } from "react";
-// import Questions from "./Questions";
-// const Quiz = () => {
-//   const [data, setData] = useState(Questions);
-
-//   const [currentKey, setCurrentKey] = useState(1);
-// const [count,setCount]=useState(20);
-//   const [count2,setCount2]=useState(20)
-//   const [button,setButton]=useState(true)
-//   const[displayMessage,setDisplayMessage]=useState(null)
-//   const intervalRef = useRef(null)
-//   const [select,setSelect]=useState(true)
-//   const intervalRef2 = useRef(null)
- 
-//   const [value,setValue]=useState(null)
-// const [display2,setDisplay2]=useState(null)
-// const [score,setScore] =useState(0)
-//   function validate(value) {
-//     if ( data.find((item)=>item.answer == value )) {
-//     //   alert("correct answer");
-//       setCurrentKey(currentKey + 1);
-//       setButton(!button)
-//       setValue(value)
-//       setScore(score+1)
-
-//  } else  {
-//    setSelect(!select)
-//         setDisplayMessage("Game over !!! Please Try Again")
-//         clearInterval(intervalRef.current)
-//         clearInterval(intervalRef2.current)
-//     }
-//   }
-// function success(){
-//     if(value == "Prahlad Joshi"){
-//         setCount("")
-//         setCount2("")
-//         setDisplay2("Successfully Completed")
-
-//     }
-//   }
-//   console.log(value)
-
-// // //// for even number questions count2 state variable////
-
-//   useEffect(()=>{
-//   if(button == false ){
-//     setCount(20)
-//     if(count2 > 0 && !intervalRef2.current){
-//         intervalRef2.current = setInterval(()=>{
-//             setCount2((count2)=>count2-1)
-//         },1000)
-//     }
-  
-//   }else{
-//     clearInterval(intervalRef2.current)
-//     intervalRef2.current = null;
-//     setCount2(20)
-//   }
-
-//   if(count2 == 0){
-//     clearInterval(intervalRef2.current)
-//     intervalRef2.current=null;
-//     setSelect(!select)
-//   }
-
-//   success()
-//   },[button,count2])
-
-// //////// for odd number questions count state variable/////
-
-// function start() {
-//     if (count > 0 && !intervalRef.current) {
-//       intervalRef.current = setInterval(() => {
-//         setCount((count)=>count - 1);
-//       }, 1000);
-//     }
-//   }
-// useEffect(()=>{
-// start()
-// },[count])
-
-
-// useEffect(()=>{
-  
-//       if(count == 0){
-//         clearInterval(intervalRef.current)
-//         intervalRef.current = null
-//         setSelect(!select)
-//       }
-     
-// },[count])
-
-
-
-// /////////////
-
-// ////this is just for understanding the concept of setInterval and setTimeout////
-
-// // const [state,setState] = useState(null)
-// // const intervalId2 = useRef(null)
-// // useEffect(()=>{
-// //     function sayHello() {
-// //         console.log('Hello');
-// //       }
-      
-// //      setState( setInterval(sayHello, 1000))
-
-// //      function namaste(){
-// //         console.log("hi");
-        
-// //      }
-// //      intervalId2.current = setInterval(namaste,1000)
-  
-// // },[])
-// // console.log(state)
-// // console.log(intervalId2.current)
-
-
-//   return (
-// <>
-// <div><h1 style={{textAlign:"center",margin:"20px",color:"white"}}>Welcome To The World of Quiz</h1>
-   
-
-//     </div>
-//     <h2 style={{textAlign:"center",color:"white"}} >Score {score}/11</h2>
-//     <div style={styles.quizContainer}>
-//     <div style={styles.timerContainer}>
-//       <h1 style={styles.timer}>
-//         {button ? count : count2}{" "}
-//         {(count === 0 || count2 === 0) && (
-//           <img
-//             style={styles.gameOverImage}
-//             src="https://t3.ftcdn.net/jpg/05/79/40/78/360_F_579407829_e0bZUE8RF6poVtkiNeqUSQ8K1jV2Is94.jpg"
-//             alt="Game Over"
-//           />
-//         )}
-//       </h1>
-//     </div>
-//     <div style={styles.questionContainer}>
-//       {data.map((item) => {
-//         return (
-//           <React.Fragment key={item.key}>
-//             {currentKey === item.key && (
-//               <div style={styles.questionBlock}>
-//                 <h1 style={styles.questionText}>{item.question}</h1>
-//                 <div style={styles.optionsContainer}>
-//                   <button
-//                     style={styles.optionButton}
-//                     type="button"
-//                     onClick={() => validate(item.option1)}
-//                     disabled={!select}
-//                   >
-//                     {item.option1}
-//                   </button>
-//                   <button
-//                     style={styles.optionButton}
-//                     type="button"
-//                     onClick={() => validate(item.option2)}
-//                     disabled={!select}
-//                   >
-//                     {item.option2}
-//                   </button>
-//                   <button
-//                     style={styles.optionButton}
-//                     type="button"
-//                     onClick={() => validate(item.option3)}
-//                     disabled={!select}
-//                   >
-//                     {item.option3}
-//                   </button>
-//                   <button
-//                     style={styles.optionButton}
-//                     type="button"
-//                     onClick={() => validate(item.option4)}
-//                     disabled={!select}
-//                   >
-//                     {item.option4}
-//                   </button>
-//                 </div>
-//               </div>
-//             )}
-//           </React.Fragment>
-//         );
-//       })}
-//     </div>
-//     <div style={styles.messageContainer}>
-//       {displayMessage !== null && <p style={styles.displayMessage}>{displayMessage}</p>}
-//       {display2}
-//     </div>
-//   </div>
-//   </>
-// );
-  
-// };
-
-
-
-// const styles = {
-//     quizContainer: {
-//       textAlign: 'center',
-//       padding: '20px',
-//       backgroundColor: '#f5f5f5',
-//       borderRadius: '10px',
-//       width: '60%',
-//       margin: 'auto',
-//       boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-//     },
-//     timerContainer: {
-//       marginBottom: '20px',
-//     },
-//     timer: {
-//       fontSize: '24px',
-//       fontWeight: 'bold',
-//     },
-//     gameOverImage: {
-//       height: '150px',
-//       width: '150px',
-//     },
-//     questionContainer: {
-//       marginBottom: '20px',
-//     },
-//     questionBlock: {
-//       backgroundColor: '#ffffff',
-//       padding: '20px',
-//       borderRadius: '10px',
-//       boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-//       marginBottom: '20px',
-//     },
-//     questionText: {
-//       fontSize: '18px',
-//       marginBottom: '20px',
-//     },
-//     optionsContainer: {
-//       display: 'flex',
-//       flexDirection: 'column',
-//       gap: '10px',
-//     },
-//     optionButton: {
-//       padding: '10px',
-//       borderRadius: '5px',
-//       border: '1px solid #cccccc',
-//       backgroundColor: '#007bff',
-//       color: '#ffffff',
-//       cursor: 'pointer',
-//     },
-//     optionButtonDisabled: {
-//       backgroundColor: '#cccccc',
-//       cursor: 'not-allowed',
-//     },
-//     messageContainer: {
-//       marginTop: '20px',
-//     },
-//     displayMessage: {
-//       fontSize: '18px',
-//       color: 'red',
-//     },
-//   };
-
-// export default Quiz;
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState, useRef } from "react";
-// import Questions from "./Questions";
-
-// const Quiz = () => {
-//   const [data, setData] = useState(Questions);
-//   const [currentKey, setCurrentKey] = useState(1);
-//   const [count, setCount] = useState(20);
-//   const [count2, setCount2] = useState(20);
-//   const [button, setButton] = useState(true);
-//   const [displayMessage, setDisplayMessage] = useState(null);
-//   const intervalRef = useRef(null);
-//   const [select, setSelect] = useState(true);
-//   const intervalRef2 = useRef(null);
-//   const [value, setValue] = useState(null);
-//   const [display2, setDisplay2] = useState(null);
-//   const [score, setScore] = useState(0);
-
-//   function validate(value) {
-//     if (data.find((item) => item.answer === value)) {
-//       setCurrentKey(currentKey + 1);
-//       setButton(!button);
-//       setValue(value);
-//       setScore(score + 1);
-//     } else {
-//       setSelect(false);
-//       setDisplayMessage("Game over !!! Please Try Again");
-//       clearInterval(intervalRef.current);
-//       clearInterval(intervalRef2.current);
-//     }
-//   }
-
-//   function success() {
-//     if (value === "Prahlad Joshi") {
-//       setCount("");
-//       setCount2("");
-//       setDisplay2("Successfully Completed");
-//     }
-//   }
-
-//   useEffect(() => {
-//     if (!button) {
-//       setCount(20);
-//       if (count2 > 0 && !intervalRef2.current) {
-//         intervalRef2.current = setInterval(() => {
-//           setCount2((count2) => count2 - 1);
-//         }, 1000);
-//       }
-//     } else {
-//       clearInterval(intervalRef2.current);
-//       intervalRef2.current = null;
-//       setCount2(20);
-//     }
-
-//     if (count2 === 0) {
-//       clearInterval(intervalRef2.current);
-//       intervalRef2.current = null;
-//       setSelect(false);
-//     }
-
-//     success();
-//   }, [button, count2]);
-
-//   function start() {
-//     if (count > 0 && !intervalRef.current) {
-//       intervalRef.current = setInterval(() => {
-//         setCount((count) => count - 1);
-//       }, 1000);
-//     }
-//   }
-
-//   useEffect(() => {
-//     start();
-//   }, [count]);
-
-//   useEffect(() => {
-//     if (count === 0) {
-//       clearInterval(intervalRef.current);
-//       intervalRef.current = null;
-//       setSelect(false);
-//     }
-//   }, [count]);
-
-//   return (
-//     <>
-//       <div>
-//         <h1 style={{ textAlign: "center", margin: "20px", color: "white" }}>
-//           Welcome To The World of Quiz
-//         </h1>
-//       </div>
-//       <h2 style={{ textAlign: "center", color: "white" }}>Score {score}/11</h2>
-//       <div style={styles.quizContainer}>
-//         <div style={styles.timerContainer}>
-//           <h1 style={styles.timer}>
-//             {button ? count : count2}{" "}
-//             {(count === 0 || count2 === 0) && (
-//               <img
-//                 style={styles.gameOverImage}
-//                 src="https://t3.ftcdn.net/jpg/05/79/40/78/360_F_579407829_e0bZUE8RF6poVtkiNeqUSQ8K1jV2Is94.jpg"
-//                 alt="Game Over"
-//               />
-//             )}
-//           </h1>
-//         </div>
-//         <div style={styles.questionContainer}>
-//           {data.map((item) => {
-//             return (
-//               <React.Fragment key={item.key}>
-//                 {currentKey === item.key && (
-//                   <div style={styles.questionBlock}>
-//                     <h1 style={styles.questionText}>{item.question}</h1>
-//                     <div style={styles.optionsContainer}>
-//                       <button
-//                         style={styles.optionButton}
-//                         type="button"
-//                         onClick={() => validate(item.option1)}
-//                         disabled={!select}
-//                       >
-//                         {item.option1}
-//                       </button>
-//                       <button
-//                         style={styles.optionButton}
-//                         type="button"
-//                         onClick={() => validate(item.option2)}
-//                         disabled={!select}
-//                       >
-//                         {item.option2}
-//                       </button>
-//                       <button
-//                         style={styles.optionButton}
-//                         type="button"
-//                         onClick={() => validate(item.option3)}
-//                         disabled={!select}
-//                       >
-//                         {item.option3}
-//                       </button>
-//                       <button
-//                         style={styles.optionButton}
-//                         type="button"
-//                         onClick={() => validate(item.option4)}
-//                         disabled={!select}
-//                       >
-//                         {item.option4}
-//                       </button>
-//                     </div>
-//                   </div>
-//                 )}
-//               </React.Fragment>
-//             );
-//           })}
-//         </div>
-//         <div style={styles.messageContainer}>
-//           {displayMessage !== null && (
-//             <p style={styles.displayMessage}>{displayMessage}</p>
-//           )}
-//           {display2}
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// const styles = {
-//   quizContainer: {
-//     textAlign: "center",
-//     padding: "20px",
-//     backgroundColor: "#101820",
-//     borderRadius: "10px",
-//     width: "60%",
-//     margin: "auto",
-//     boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-//     color: "white",
-//   },
-//   timerContainer: {
-//     marginBottom: "20px",
-//   },
-//   timer: {
-//     fontSize: "24px",
-//     fontWeight: "bold",
-//     color: "yellow",
-//   },
-//   gameOverImage: {
-//     height: "150px",
-//     width: "150px",
-//   },
-//   questionContainer: {
-//     marginBottom: "20px",
-//   },
-//   questionBlock: {
-//     backgroundColor: "#283747",
-//     padding: "20px",
-//     borderRadius: "10px",
-//     boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-//     marginBottom: "20px",
-//   },
-//   questionText: {
-//     fontSize: "18px",
-//     marginBottom: "20px",
-//     color: "yellow",
-//   },
-//   optionsContainer: {
-//     display: "flex",
-//     flexDirection: "column",
-//     gap: "10px",
-//   },
-//   optionButton: {
-//     padding: "10px",
-//     borderRadius: "5px",
-//     border: "2px solid #007bff",
-//     backgroundColor: "#2C3E50",
-//     color: "#fff",
-//     cursor: "pointer",
-//     fontSize: "16px",
-//     fontWeight: "bold",
-//     transition: "background-color 0.3s, transform 0.3s",
-//   },
-//   optionButtonDisabled: {
-//     backgroundColor: "#cccccc",
-//     cursor: "not-allowed",
-//   },
-//   optionButtonHover: {
-//     backgroundColor: "#007bff",
-//     transform: "scale(1.05)",
-//   },
-//   messageContainer: {
-//     marginTop: "20px",
-//   },
-//   displayMessage: {
-//     fontSize: "18px",
-//     color: "red",
-//   },
-// };
-
-// export default Quiz;
-
-
 
 
 
@@ -525,17 +22,35 @@ const Quiz = () => {
   const [display2, setDisplay2] = useState(null);
   const [score, setScore] = useState(0);
 
+  const [button2,setButton2]=useState(true)
+
+
+function nextQuestion(){
+  setCurrentKey(currentKey + 1);
+  setButton(!button)
+  intervalRef.current=null;
+  intervalRef2.current=null
+  setButton2(!button2)
+  setSelect(true)
+  setDisplayMessage("")  
+}
   function validate(value) {
+    
     if (data.find((item) => item.answer === value)) {
-      setCurrentKey(currentKey + 1);
-      setButton(!button);
+     
+      setDisplayMessage("Correct Answer")
+   
       setValue(value);
       setScore(score + 1);
+      clearInterval(intervalRef.current)
+      clearInterval(intervalRef2.current)
+     
     } else {
       setSelect(false);
-      setDisplayMessage("Game over !!! Please Try Again");
+      setDisplayMessage("Wrong Answer");
       clearInterval(intervalRef.current);
       clearInterval(intervalRef2.current);
+    
     }
   }
 
@@ -548,9 +63,11 @@ const Quiz = () => {
   }
 
   useEffect(() => {
-    if (!button) {
+    if (button == false) {
+      
       setCount(20);
-      if (count2 > 0 && !intervalRef2.current) {
+
+  if (count2 > 0 && !intervalRef2.current) {
         intervalRef2.current = setInterval(() => {
           setCount2((count2) => count2 - 1);
         }, 1000);
@@ -568,10 +85,13 @@ const Quiz = () => {
     }
 
     success();
+    zero()
   }, [button, count2]);
 
+
+
   function start() {
-    if (count > 0 && !intervalRef.current) {
+    if (count > 0 && !intervalRef.current)  {
       intervalRef.current = setInterval(() => {
         setCount((count) => count - 1);
       }, 1000);
@@ -580,7 +100,15 @@ const Quiz = () => {
 
   useEffect(() => {
     start();
+    zero()
   }, [count]);
+
+  useEffect(()=>{
+    if(button2 == true){
+      start()
+    }
+
+  },[button2])
 
   useEffect(() => {
     if (count === 0) {
@@ -589,6 +117,13 @@ const Quiz = () => {
       setSelect(false);
     }
   }, [count]);
+
+  function zero(){
+    if (count == 0|| count2 == 0){
+        setCount(0)
+        setCount2(0)
+    }
+  }
 
   return (
     <>
@@ -601,8 +136,8 @@ const Quiz = () => {
       <div style={styles.quizContainer}>
         <div style={styles.timerContainer}>
           <h1 style={styles.timer}>
-            {button ? count : count2}{" "}
-            {(count === 0 || count2 === 0) && (
+            {button == true ? count : count2}
+            {(count == "" || count2 == "") && (
               <img
                 style={styles.gameOverImage}
                 src="https://t3.ftcdn.net/jpg/05/79/40/78/360_F_579407829_e0bZUE8RF6poVtkiNeqUSQ8K1jV2Is94.jpg"
@@ -664,6 +199,12 @@ const Quiz = () => {
           )}
           {display2}
         </div>
+      {/* {button2 == false ? */}
+      <button onClick={nextQuestion}
+      
+      >
+        Next Question</button>
+        {/* :"" }   */}
       </div>
     </>
   );
