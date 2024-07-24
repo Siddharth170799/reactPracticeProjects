@@ -50,6 +50,7 @@ const Quiz2 = () => {
       clearInterval(intervalRef.current);
       clearInterval(intervalRef2.current);
       setButton3(false);
+      setSelect(!select)
    
       const details = data.find((item) => item.answer === value);
       console.log(details);
