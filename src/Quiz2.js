@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import Questions from "./Questions";
+
 import axios from "axios";
 import Buttons from "./Button";
-import { addToStore } from "./Slice";
-import { useDispatch, useSelector } from "react-redux";
+
 
 const Quiz2 = () => {
   const [data, setData] = useState([]);
