@@ -23,7 +23,8 @@ const Quiz = () => {
   const [score, setScore] = useState(0);
 
   const [button2,setButton2]=useState(true)
-
+  const [button3,setButton3] = useState(true)
+  console.log(display2)
 
 function nextQuestion(){
   setCurrentKey(currentKey + 1);
@@ -33,6 +34,11 @@ function nextQuestion(){
   setButton2(!button2)
   setSelect(true)
   setDisplayMessage("")  
+  setButton3(true)
+  if(currentKey == 12){
+    setCount('')
+    setCount2('')
+  }
 }
   function validate(value) {
     
@@ -44,18 +50,20 @@ function nextQuestion(){
       setScore(score + 1);
       clearInterval(intervalRef.current)
       clearInterval(intervalRef2.current)
+      setButton3(false)
      
     } else {
       setSelect(false);
       setDisplayMessage("Wrong Answer");
       clearInterval(intervalRef.current);
       clearInterval(intervalRef2.current);
+      setButton3(false)
     
     }
   }
 
   function success() {
-    if (value === "Prahlad Joshi") {
+    if (currentKey > 11 ) {
       setCount("");
       setCount2("");
       setDisplay2("Successfully Completed");
@@ -86,6 +94,7 @@ function nextQuestion(){
 
     success();
     zero()
+   
   }, [button, count2]);
 
 
@@ -124,6 +133,7 @@ function nextQuestion(){
         setCount2(0)
     }
   }
+ 
 
   return (
     <>
@@ -132,12 +142,13 @@ function nextQuestion(){
           Welcome To The World of Quiz
         </h1>
       </div>
-      <h2 style={{ textAlign: "center", color: "white" }}>Score {score}/11</h2>
+      <h2 style={{ textAlign: "center", color: "black" }}>Score {score}/11</h2>
       <div style={styles.quizContainer}>
         <div style={styles.timerContainer}>
           <h1 style={styles.timer}>
-            {button == true ? count : count2}
-            {(count == "" || count2 == "") && (
+            {button == true  ? count : count2}
+
+            {(count == 0 && count2 == 0 && currentKey < 11) && (
               <img
                 style={styles.gameOverImage}
                 src="https://t3.ftcdn.net/jpg/05/79/40/78/360_F_579407829_e0bZUE8RF6poVtkiNeqUSQ8K1jV2Is94.jpg"
@@ -199,12 +210,10 @@ function nextQuestion(){
           )}
           {display2}
         </div>
-      {/* {button2 == false ? */}
-      <button onClick={nextQuestion}
-      
-      >
+      {button3 == false ?
+      <button onClick={nextQuestion}>
         Next Question</button>
-        {/* :"" }   */}
+        :"" }  
       </div>
     </>
   );
