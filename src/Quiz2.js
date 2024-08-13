@@ -44,6 +44,7 @@ const Quiz2 = () => {
     if (data.find((item) => item.answer === value)) {
       setDisplayMessage("Correct Answer");
 
+      
       setValue(value);
       console.log(value);
       setScore(score + 1);
