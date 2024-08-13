@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Buttons from "./Button";
 
-
 const Quiz2 = () => {
   const [data, setData] = useState([]);
   const [currentKey, setCurrentKey] = useState(1);
@@ -18,28 +17,29 @@ const Quiz2 = () => {
   const [display2, setDisplay2] = useState(null);
   const [score, setScore] = useState(0);
 
-  const [button2, setButton2] = useState(true);
+
   const [button3, setButton3] = useState(true);
-
-  const [button4, setButton4] = useState(true);
-
   const [correctAnswers, setCorrectAnswers] = useState([]);
 
+//    async function nextQuestion() {
+//       setCurrentKey(currentKey + 1);
+//       setButton(!button);
+//       intervalRef.current = null;
+//       intervalRef2.current = null;
+//       setButton2(!button2);
+//       setSelect(true);
+//       setDisplayMessage("");
+//       setButton3(true);
 
-//   function nextQuestion() {
-//     setCurrentKey(currentKey + 1);
-//     setButton(!button);
-//     intervalRef.current = null;
-//     intervalRef2.current = null;
-//     setButton2(!button2);
-//     setSelect(true);
-//     setDisplayMessage("");
-//     setButton3(true);
-//     if (currentKey == 12) {
-//       setCount("");
-//       setCount2("");
+//     const dataBackend = await axios.get(
+//         "https://quiz-backend-new-1.onrender.com/api1/getCorrectQuestions"
+//       );
+//       setCorrectAnswers(dataBackend.data.data.map((item) => item.key));
+//       if (currentKey == 12) {
+//         setCount("");
+//         setCount2("");
+//       }
 //     }
-//   }
   async function validate(value) {
     if (data.find((item) => item.answer === value)) {
       setDisplayMessage("Correct Answer");
@@ -50,15 +50,17 @@ const Quiz2 = () => {
       clearInterval(intervalRef.current);
       clearInterval(intervalRef2.current);
       setButton3(false);
-      setSelect(!select)
-   
+      setSelect(!select);
+
       const details = data.find((item) => item.answer === value);
       console.log(details);
       setCorrectAnswers((item) => [...item, details.key]);
-      await axios.post("https://quiz-backend-new-1.onrender.com/api1/correctQuestions", {
-        details,
-      });
-
+      await axios.post(
+        "https://quiz-backend-new-1.onrender.com/api1/correctQuestions",
+        {
+          details,
+        }
+      );
     } else {
       setSelect(false);
       setDisplayMessage("Wrong Answer");
@@ -67,7 +69,6 @@ const Quiz2 = () => {
       setButton3(false);
     }
   }
-
 
   function success() {
     if (currentKey > 11) {
@@ -103,7 +104,7 @@ const Quiz2 = () => {
   }, [button, count2]);
 
   function start() {
-    if (count > 0 && !intervalRef.current && button == true) {
+    if (count > 0 && !intervalRef.current) {
       intervalRef.current = setInterval(() => {
         setCount((count) => count - 1);
       }, 1000);
@@ -118,7 +119,7 @@ const Quiz2 = () => {
 
 
   useEffect(() => {
-    if (count == 0 ) {
+    if (count == 0) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
       setSelect(false);
@@ -142,48 +143,44 @@ const Quiz2 = () => {
     QuestionsData();
   }, []);
 
-
-
   async function buttonNumber(value1) {
-
     console.log(value1);
     setCurrentKey(value1);
     setButton(!button);
     setSelect(true);
     setDisplayMessage("");
 
- 
-
     const dataBackend = await axios.get(
       "https://quiz-backend-new-1.onrender.com/api1/getCorrectQuestions"
     );
-        setCorrectAnswers(dataBackend.data.data.map((item) => item.key));
+    setCorrectAnswers(dataBackend.data.data.map((item) => item.key));
   }
 
+  console.log(count);
 
-
-  console.log(count)
-
-async function clearDocuments(){
-  try {
-    await axios.delete("https://quiz-backend-new-1.onrender.com/api1/clearDocuments",{hi:"hi"});
-    console.log('Documents cleared successfully');
-  } catch (error) {
-    console.error('Error clearing documents:', error);
+  async function clearDocuments() {
+    try {
+      await axios.delete(
+        "https://quiz-backend-new-1.onrender.com/api1/clearDocuments",
+        { hi: "hi" }
+      );
+      console.log("Documents cleared successfully");
+    } catch (error) {
+      console.error("Error clearing documents:", error);
+    }
   }
-  
-}
 
-useEffect(() => {
-  clearDocuments();
-}, []);
-
+  useEffect(() => {
+    clearDocuments();
+  }, []);
+  console.log(intervalRef.current);
+  console.log(intervalRef2.current);
+  console.log(button);
   return (
     <>
       <div className="quiz-container">
         <div className="quiz-row">
           <div className="quiz-col-2">
-        
             {Buttons.map((item) => {
               return (
                 <>
