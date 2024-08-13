@@ -120,6 +120,9 @@ const Quiz2 = () => {
   useEffect(()=>{
 
   },[])
+  useEffect(()=>{
+
+  },[])
 
 
 
